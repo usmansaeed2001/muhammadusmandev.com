@@ -1,0 +1,23 @@
+# Pull requests get a temporary preview URL, posted as a comment on the PR.
+name: Deploy preview
+
+on:
+  pull_request:
+
+jobs:
+  preview:
+    # secrets aren't available to PRs from forks
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MUHAMMADUSMAN_IO }}
+          projectId: muhammadusman-io
+          expires: 7d

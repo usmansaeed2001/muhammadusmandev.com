@@ -23,10 +23,18 @@ python -m http.server 8731 --directory public
 
 ## Deploy
 
-1. Put your Firebase project id in `.firebaserc` (or run `firebase use --add`).
-2. `firebase deploy --only hosting`
-3. Firebase console → Hosting → **Add custom domain** → `muhammadusmandev.com` (and `www.muhammadusmandev.com`
-   redirecting to it). Add the A/TXT records it shows at your domain registrar. SSL is issued automatically.
+Deploys run on GitHub Actions (`.github/workflows/`):
+
+- **Push to `main`** → live at https://muhammadusmandev.com (about a minute).
+- **Open a pull request** → a preview URL is posted on the PR; it expires after 7 days.
+- **Rollback** → Firebase console → Hosting → release history → Rollback.
+
+The workflows authenticate with the `FIREBASE_SERVICE_ACCOUNT_MUHAMMADUSMAN_IO` repo secret
+(service account `github-action-1424829337@muhammadusman-io.iam.gserviceaccount.com`).
+
+Manual deploy, if ever needed: `firebase deploy --only hosting`.
+
+DNS lives at GoDaddy: `A @ → 199.36.158.100`, TXT `hosting-site=muhammadusman-io`, `www` → redirected by Firebase.
 
 ## Updating content
 
