@@ -52,6 +52,48 @@
     })
   );
 
+  /* ───────────────────────── theme toggle ───────────────────────── */
+
+  (function theme() {
+    const root = document.documentElement;
+    const btn = $('[data-theme-toggle]');
+    const systemDark = matchMedia('(prefers-color-scheme: dark)');
+    const metas = $$('meta[name="theme-color"]');
+    const current = () => root.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+
+    function sync() {
+      const dark = current() === 'dark';
+      btn.setAttribute('aria-pressed', dark);
+      btn.setAttribute('aria-label', dark ? 'Light mode' : 'Dark mode');
+      // browser chrome follows the page, whichever way it was chosen
+      if (root.dataset.theme) metas.forEach((m) => (m.content = dark ? '#131210' : '#EDEAE2'));
+    }
+
+    function apply(next) {
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch { /* not persisted; still applies for this visit */ }
+      sync();
+    }
+
+    btn.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      if (!document.startViewTransition || reduced) return apply(next);
+      // the new theme grows out of the button as a circle
+      const r = btn.getBoundingClientRect();
+      const x = r.left + r.width / 2, y = r.top + r.height / 2;
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      document.startViewTransition(() => apply(next)).ready.then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 700, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      });
+    });
+
+    systemDark.addEventListener('change', sync);
+    sync();
+  })();
+
   /* ───────────────────────── asteroids (loaded on first play) ───────────────────────── */
 
   const playBtn = $('[data-play]');

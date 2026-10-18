@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muhammad Usman — Python Backend & AI Engineer</title>
   <meta name="description" content="Muhammad Usman is a Python backend and AI engineer in Islamabad building data pipelines, RAG systems, LLM agents and MCP integrations for production.">
-  <meta name="theme-color" content="#EDEAE2">
-  <meta name="color-scheme" content="light">
-  <script>document.documentElement.classList.add('js')</script>
+  <meta name="theme-color" content="#EDEAE2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // runs before first paint so a saved theme never flashes the wrong colours
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="canonical" href="https://muhammadusmandev.com/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 
@@ -55,6 +66,9 @@
       <div class="nav__clock mono" aria-label="Local time in Islamabad">
         <span class="dot"></span><span data-clock>--:--</span> <span class="muted">ISB</span>
       </div>
+      <button class="nav__theme" type="button" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+      </button>
       <button class="nav__play mono" type="button" data-play title="Play a quick game">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 19-8-4.5L4 21z"/></svg>
         <span>Play</span>

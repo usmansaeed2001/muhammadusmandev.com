@@ -1,9 +1,10 @@
 /* Asteroids, but the asteroids are production incidents.
    Loaded on demand from main.js; the cursor arrow becomes the ship. */
 
-const INK = '#16150F';
-const PAPER = '#EDEAE2';
-const ACCENT = '#FF4D1A';
+// read from the page at start so the game follows the light/dark theme
+let INK = '#16150F';
+let PAPER = '#EDEAE2';
+let ACCENT = '#FF4D1A';
 const LABELS = ['bug', '500', 'OOM', 'timeout', 'flaky test', 'null', 'deadlock', '429', 'CORS', 'N+1', 'merge conflict', 'cold start', 'memory leak', 'race condition', 'stale cache', 'disk full'];
 const RADIUS = { 3: 46, 2: 28, 1: 15 };
 const POINTS = { 3: 20, 2: 50, 1: 100 };
@@ -27,6 +28,10 @@ export function isRunning() { return !!S; }
 export function start(x, y) {
   if (S) return;
   const touch = matchMedia('(pointer: coarse)').matches;
+  const css = getComputedStyle(document.documentElement);
+  INK = css.getPropertyValue('--ink').trim() || INK;
+  PAPER = css.getPropertyValue('--paper').trim() || PAPER;
+  ACCENT = css.getPropertyValue('--accent').trim() || ACCENT;
 
   const canvas = document.createElement('canvas');
   canvas.className = 'game';
