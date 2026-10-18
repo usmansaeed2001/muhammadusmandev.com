@@ -1,0 +1,7 @@
+.firebase/
+firebase-debug.log*
+node_modules/
+
+# personal source files; only the edited copies in public/assets are published
+/1-removebg-preview.jpg
+/Backend-Resume-Usman.pdf
