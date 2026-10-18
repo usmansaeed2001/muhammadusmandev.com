@@ -600,24 +600,6 @@ mark {
   color: rgba(237, 234, 226, 0.45);
   text-transform: none;
 }
-.seg {
-  display: inline-flex;
-  padding: 3px;
-  border-radius: 999px;
-  background: var(--panel-2);
-  border: 1px solid var(--panel-line);
-}
-.seg button {
-  padding: 5px 12px;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  font: inherit;
-  color: rgba(237, 234, 226, 0.6);
-  transition: background-color 0.25s, color 0.25s;
-}
-.seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
-
 .demo--pipe canvas {
   display: block;
   width: 100%;

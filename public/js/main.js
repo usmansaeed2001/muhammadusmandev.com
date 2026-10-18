@@ -287,12 +287,9 @@
 
     const C = { paper: '#EDEAE2', dim: 'rgba(237,234,226,0.12)', faint: 'rgba(237,234,226,0.45)', accent: '#FF4D1A', bg: '#121109' };
     const STAGES = ['parse', 'chunk', 'caption', 'embed'];
-    const MODES = {
-      before: { maxPods: 1, podRate: 0.5, speed: 70, autoscale: false },
-      now: { maxPods: 8, podRate: 1.4, speed: 170, autoscale: true },
-    };
+    const M = { maxPods: 8, podRate: 1.4, speed: 170 };
+    const MONTHLY_AT_FULL = 250000; // all pods busy ≈ the pipeline's real monthly volume
 
-    let mode = 'now';
     let W = 0, H = 0, dpr = 1;
     let geo = {};
     let load = +loadInput.value;
@@ -345,14 +342,6 @@
       old.forEach((c, k) => { if (cells[k]) cells[k].fill = c.fill; });
     }
 
-    function setMode(m) {
-      mode = m;
-      $$('[data-mode]', root).forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === m));
-      if (m === 'before') pods.forEach((p, k) => (p.on = k === 0));
-      else pods[0].on = true;
-    }
-    $$('[data-mode]', root).forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
-
     function paintSlider() { loadInput.style.setProperty('--fill', `${loadInput.value}%`); }
     loadInput.addEventListener('input', () => { userLoad = true; load = +loadInput.value; paintSlider(); });
     paintSlider();
@@ -368,8 +357,6 @@
     }
 
     function step(dt, now) {
-      const M = MODES[mode];
-
       simT += dt;
       if (!userLoad && !reduced) {
         // simulated traffic: starts busy, eases off to idle, then ramps back up
@@ -386,17 +373,15 @@
 
       // autoscaling (KEDA-ish: scale on backlog + arrival rate, scale to zero when idle)
       const active = pods.filter((p) => p.on).length;
-      if (M.autoscale) {
-        let target = clamp(Math.ceil(lambda / M.podRate + queue / 8), 0, M.maxPods);
-        if (queue === 0 && lambda < 0.15) {
-          if (!zeroSince) zeroSince = now;
-          if (now - zeroSince < 2500) target = Math.max(target, 1);
-        } else zeroSince = 0;
-        if (target > active && now - lastScale > 450) {
-          pods.find((p) => !p.on).on = true; lastScale = now;
-        } else if (target < active && now - lastScale > 1400) {
-          [...pods].reverse().find((p) => p.on).on = false; lastScale = now;
-        }
+      let target = clamp(Math.ceil(lambda / M.podRate + queue / 8), 0, M.maxPods);
+      if (queue === 0 && lambda < 0.15) {
+        if (!zeroSince) zeroSince = now;
+        if (now - zeroSince < 2500) target = Math.max(target, 1);
+      } else zeroSince = 0;
+      if (target > active && now - lastScale > 450) {
+        pods.find((p) => !p.on).on = true; lastScale = now;
+      } else if (target < active && now - lastScale > 1400) {
+        [...pods].reverse().find((p) => p.on).on = false; lastScale = now;
       }
 
       // pods pull work
@@ -541,14 +526,10 @@
 
       // readouts
       const active = pods.filter((p) => p.on).length;
-      out.pods.textContent = active === 0 ? '0 · idle' : `${active}/${MODES[mode].maxPods}`;
+      out.pods.textContent = active === 0 ? '0 · idle' : `${active}/${M.maxPods}`;
       out.indexed.textContent = indexedTotal.toLocaleString('en-US');
-      if (mode === 'before') out.rate.textContent = '≈ 1.5k / mo';
-      else {
-        const full = MODES.now.maxPods * MODES.now.podRate;
-        const monthly = 225000 * clamp(doneEMA / full, 0, 1);
-        out.rate.textContent = monthly < 500 ? '—' : `≈ ${Math.round(monthly / 1000)}k / mo`;
-      }
+      const monthly = MONTHLY_AT_FULL * clamp(doneEMA / (M.maxPods * M.podRate), 0, 1);
+      out.rate.textContent = monthly < 500 ? '—' : `≈ ${Math.round(monthly / 1000)}k / mo`;
     }
 
     let running = false, raf, last = 0;

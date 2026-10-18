@@ -32,7 +32,7 @@
     "email": "mailto:muawan2001@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
     "alumniOf": "National University of Sciences & Technology (NUST)",
-    "sameAs": ["https://github.com/muhammad-usman-aai", "https://www.linkedin.com/in/muhammad-usman-3972a816a/"]
+    "sameAs": ["https://github.com/usmansaeed2001", "https://www.linkedin.com/in/muhammad-usman-3972a816a/"]
   }
   </script>
 </head>
@@ -81,8 +81,8 @@
         <p class="hero__role reveal">Python Backend <span class="amp">&amp;</span> AI&nbsp;Engineer</p>
         <p class="hero__intro reveal">
           I work on the backend of AI products: getting messy data in, making retrieval accurate,
-          and keeping everything running reliably at scale. Right now I lead a three-person remote team at
-          <strong>AAI&nbsp;Innovations</strong> in Germany.
+          and keeping everything running reliably at scale. Right now I'm at <strong>AAI&nbsp;Innovations</strong>
+          (remote, Germany), owning backend features for CORA from technical design through production.
         </p>
         <a class="hero__scroll mono reveal" href="#work" aria-label="Scroll to work">
           <span>Scroll</span>
@@ -98,22 +98,22 @@
         <span class="num__label mono">Years shipping production AI &amp; data systems</span>
       </div>
       <div class="num reveal">
-        <span class="num__value"><span data-count="150">0</span>×</span>
-        <span class="num__label mono">Ingestion throughput, 1.5k → 225k regulations / month</span>
-      </div>
-      <div class="num reveal">
-        <span class="num__value"><span data-count="250">0</span>k+</span>
-        <span class="num__label mono">Regulations searchable in CORA</span>
+        <span class="num__value"><span data-count="250">0</span>k</span>
+        <span class="num__label mono">Regulations processed per month, autoscaled on Kubernetes</span>
       </div>
       <div class="num reveal">
         <span class="num__value"><span data-count="5">0</span></span>
         <span class="num__label mono">MCP servers behind one gateway</span>
       </div>
+      <div class="num reveal">
+        <span class="num__value"><span data-count="3">0</span></span>
+        <span class="num__label mono">Countries shipped for: Germany, Portugal, Pakistan</span>
+      </div>
     </section>
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span>Python</span><i>✳</i><span>LangGraph</span><i>✳</i><span>FastAPI</span><i>✳</i><span>MCP</span><i>✳</i><span>Kubernetes</span><i>✳</i><span>KEDA</span><i>✳</i><span>MongoDB Atlas Search</span><i>✳</i><span>Airflow</span><i>✳</i><span>Vertex AI</span><i>✳</i><span>RAG</span><i>✳</i><span>OAuth 2.1</span><i>✳</i><span>pgvector</span><i>✳</i>
+        <span>Python</span><i>✳</i><span>LangGraph</span><i>✳</i><span>FastAPI</span><i>✳</i><span>MCP</span><i>✳</i><span>Kubernetes</span><i>✳</i><span>KEDA</span><i>✳</i><span>MongoDB Atlas Search</span><i>✳</i><span>Airflow</span><i>✳</i><span>Vertex AI</span><i>✳</i><span>RAG</span><i>✳</i><span>OAuth 2.1</span><i>✳</i><span>Docker</span><i>✳</i>
       </div>
     </div>
 
@@ -130,17 +130,17 @@
           <button class="job__row" aria-expanded="true">
             <span class="job__date mono">Feb 2025 — Now</span>
             <span class="job__co">AAI Innovations <span class="job__where">GmbH</span></span>
-            <span class="job__role">Software Engineer <span class="muted">(Contract)</span></span>
+            <span class="job__role">Software Engineer <span class="muted">· Remote, Germany</span></span>
             <span class="job__toggle" aria-hidden="true"></span>
           </button>
           <div class="job__body">
             <div class="job__inner">
               <ul>
-                <li>Lead a remote pod of 3 engineers. I take requirements from stakeholders, split them into tasks for the team, review code and help people get unblocked so we deliver on time.</li>
-                <li>Built the document ingestion pipeline for CORA (semantic chunking, image captioning, embeddings), taking processing from 1,500 to 225,000 regulations per month <mark>(150×)</mark>.</li>
-                <li>Deployed each stage as KEDA-autoscaled pods on Kubernetes, with MongoDB triggering the next phase, so the system scales up under load and back down when idle.</li>
+                <li>Build Python backend services, data pipelines and AI agent workflows for CORA, a regulatory intelligence platform, owning features from technical design through production deployment.</li>
+                <li>Engineered the automated document ingestion pipeline (document parsing, semantic chunking, LLM-based image captioning, vector embeddings) that processes <mark>250k regulations per month</mark>, running on Kubernetes with KEDA-driven autoscaling.</li>
+                <li>Built an MCP gateway hosting 5 MCP servers over Streamable HTTP, letting customers' AI agents (Claude, Cursor) call individual product features, secured with OAuth 2.1 (CIMD) and per-user credit metering.</li>
               </ul>
-              <div class="tags mono"><span>Python</span><span>Kubernetes</span><span>KEDA</span><span>MongoDB</span><span>LangGraph</span><span>Vertex AI</span></div>
+              <div class="tags mono"><span>Python</span><span>Kubernetes</span><span>KEDA</span><span>MongoDB</span><span>LangGraph</span><span>Vertex AI</span><span>MCP</span></div>
             </div>
           </div>
         </li>
@@ -148,17 +148,16 @@
           <button class="job__row" aria-expanded="false">
             <span class="job__date mono">Aug 2024 — Feb 2025</span>
             <span class="job__co">Maanz AI</span>
-            <span class="job__role">Software Engineer</span>
+            <span class="job__role">Software Engineer <span class="muted">· Islamabad, Pakistan</span></span>
             <span class="job__toggle" aria-hidden="true"></span>
           </button>
           <div class="job__body">
             <div class="job__inner">
               <ul>
-                <li>Built and maintained Apache Airflow DAGs and Python services for high-volume data ingestion, transformation and analytics on daily schedules.</li>
-                <li>Improved throughput and reliability across data workflows, cutting manual fixes and speeding up downstream jobs.</li>
-                <li>Worked on data workflows for vehicle homologation and safety-critical automotive data, keeping results correct and traceable under strict quality requirements.</li>
+                <li>Built and maintained Apache Airflow DAGs and Python services for high-volume daily data ingestion, transformation and analytics, including vehicle homologation and safety-critical automotive data.</li>
+                <li>Improved throughput and reliability across these workflows, cutting manual fixes and keeping results correct and traceable under strict quality requirements.</li>
               </ul>
-              <div class="tags mono"><span>Python</span><span>Apache Airflow</span><span>ETL</span><span>SQL</span></div>
+              <div class="tags mono"><span>Python</span><span>Apache Airflow</span><span>ETL</span></div>
             </div>
           </div>
         </li>
@@ -166,14 +165,14 @@
           <button class="job__row" aria-expanded="false">
             <span class="job__date mono">Aug 2023 — Aug 2024</span>
             <span class="job__co">Condoroo</span>
-            <span class="job__role">Software Engineer <span class="muted">(Part-time)</span></span>
+            <span class="job__role">Software Engineer <span class="muted">(Part-time) · Remote, Portugal</span></span>
             <span class="job__toggle" aria-hidden="true"></span>
           </button>
           <div class="job__body">
             <div class="job__inner">
               <ul>
                 <li>Built the company's first customer-facing AI chatbot on WhatsApp (Botpress plus custom code). Customers verify who they are, then get live account details from Airtable or file complaints with no staff involved. Thousands still use it.</li>
-                <li>Built Airtable automations and Node.js backend workflows for complex processes, including a document parsing pipeline that streamlined document handling.</li>
+                <li>Built Airtable automations and Node.js backend workflows, including a document parsing pipeline that streamlined document handling and made operations more efficient.</li>
               </ul>
               <div class="tags mono"><span>Node.js</span><span>Botpress</span><span>Airtable</span><span>WhatsApp</span></div>
             </div>
@@ -212,20 +211,16 @@
           <h3 class="project__title reveal">CORA</h3>
           <p class="project__lede">An AI agent platform for regulatory compliance, covering 250k+ regulations from the EU, US, UN, ISO and others.</p>
           <ul class="project__points">
-            <li>Built the ingestion pipeline: parsing, semantic chunking, image captioning and embeddings, each stage running as its own autoscaled pod.</li>
+            <li>Engineered the ingestion pipeline: document parsing, semantic chunking, LLM-based image captioning and vector embeddings, processing 250k regulations a month on Kubernetes with KEDA autoscaling.</li>
             <li>Agentic workflows with LangGraph and Vertex AI, traced and evaluated in LangSmith.</li>
-            <li>RAG on MongoDB Atlas Search for accurate, low-latency retrieval across the full corpus.</li>
-            <li>Synthetic benchmark datasets, validated by domain experts, to measure retrieval and answer quality. The same data trained the company's in-house models.</li>
+            <li>RAG on MongoDB Atlas Search with hybrid (vector + keyword) retrieval, for accurate, low-latency results across the full regulatory corpus.</li>
           </ul>
         </div>
 
         <div class="demo demo--pipe" data-pipeline>
           <div class="demo__bar">
             <span class="mono demo__title">ingestion.pipeline</span>
-            <div class="seg mono" role="group" aria-label="Pipeline mode">
-              <button data-mode="before" aria-pressed="false">Before</button>
-              <button data-mode="now" aria-pressed="true">Now</button>
-            </div>
+            <span class="mono muted">KEDA · Kubernetes</span>
           </div>
           <canvas aria-label="Animated diagram: documents flow through parse, chunk, caption and embed stages into a vector index. Worker pods scale with load."></canvas>
           <div class="demo__controls">
@@ -311,23 +306,23 @@
       <div class="stack">
         <div class="stack__row reveal">
           <span class="stack__cat mono">AI &amp; LLMs</span>
-          <div class="stack__items"><span>LangGraph</span><span>Google ADK</span><span>MCP (Streamable HTTP)</span><span>LangSmith</span><span>RAG</span><span>OpenAI &amp; Anthropic APIs</span><span>Vertex AI</span><span>Hugging Face</span><span>PyTorch</span></div>
+          <div class="stack__items"><span>LangGraph</span><span>Google ADK</span><span>MCP (Streamable HTTP)</span><span>LangSmith</span><span>RAG</span><span>OpenAI &amp; Anthropic APIs</span><span>Vertex AI</span></div>
         </div>
         <div class="stack__row reveal">
           <span class="stack__cat mono">Backend</span>
-          <div class="stack__items"><span>FastAPI</span><span>Flask</span><span>Django</span><span>REST APIs</span><span>OAuth 2.1</span><span>pytest</span></div>
+          <div class="stack__items"><span>FastAPI</span><span>REST APIs</span><span>OAuth 2.1</span></div>
         </div>
         <div class="stack__row reveal">
           <span class="stack__cat mono">Data &amp; Storage</span>
-          <div class="stack__items"><span>MongoDB Atlas Search</span><span>PostgreSQL</span><span>pgvector</span><span>Pinecone</span><span>Chroma</span><span>Weaviate</span><span>Apache Airflow</span><span>ETL</span><span>Web scraping</span></div>
+          <div class="stack__items"><span>MongoDB Atlas Search</span><span>PostgreSQL</span><span>Apache Airflow</span><span>ETL</span><span>Web scraping</span></div>
         </div>
         <div class="stack__row reveal">
           <span class="stack__cat mono">Infrastructure</span>
-          <div class="stack__items"><span>Kubernetes</span><span>KEDA</span><span>Docker</span><span>AWS</span><span>GitHub Actions</span><span>CI/CD</span><span>Git</span></div>
+          <div class="stack__items"><span>Kubernetes</span><span>KEDA</span><span>Docker</span><span>GitHub Actions</span><span>CI/CD</span><span>Git</span></div>
         </div>
         <div class="stack__row reveal">
           <span class="stack__cat mono">Languages</span>
-          <div class="stack__items"><span>Python</span><span>SQL</span><span>JavaScript (Node.js)</span><span>C</span><span>C++</span></div>
+          <div class="stack__items"><span>Python</span><span>JavaScript (Node.js)</span></div>
         </div>
       </div>
     </section>
@@ -351,7 +346,7 @@
 
           <ul class="links">
             <li><a href="https://www.linkedin.com/in/muhammad-usman-3972a816a/" target="_blank" rel="noopener"><span>LinkedIn</span><span class="arrow" aria-hidden="true">↗</span></a></li>
-            <li><a href="https://github.com/muhammad-usman-aai" target="_blank" rel="noopener"><span>GitHub</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+            <li><a href="https://github.com/usmansaeed2001" target="_blank" rel="noopener"><span>GitHub</span><span class="arrow" aria-hidden="true">↗</span></a></li>
             <li><a href="/assets/Muhammad-Usman-Resume.pdf" download><span>Résumé (PDF)</span><span class="arrow" aria-hidden="true">↓</span></a></li>
           </ul>
         </div>
